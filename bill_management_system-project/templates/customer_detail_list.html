@@ -1,0 +1,44 @@
+
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        .item_list_header{
+            color: rgb(231, 231, 27);
+            background-color: black;
+        }
+    </style>
+</head>
+<div class="jumbotron item_list_header">
+<h1>Customer Detail</h1>
+    {% for i in c_detail %}
+        <div class="row" style="color: black;">
+            <div class="col-md-1">
+                <li class="list-group-item">{{ i.id }}</li>
+            </div>
+            <div class="col-md-5">
+                <li class="list-group-item">{{ i.c_name }}</li>
+            </div>
+            <div class="col-md-4">
+                <li class="list-group-item">{{ i.c_mono }}</li>
+            </div>
+            <div class="col-md-1">
+                <a href="{% url 'bill_view' c_id=i.id %}" class="btn btn-primary">Show Bill</a>
+            </div>
+            <div class="col-md-1">
+                <a href="{% url 'delete_customer_detail' pk=i.id %}" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+        <br>
+    {% endfor %}
+
+
+<br>
+
+<a href="{% url 'add_itemheader' %}" class="btn btn-primary">Go to Add Item Header</a>&nbsp;&nbsp;
+<a href="{% url 'item_list' %}" class="btn btn-primary">Item List</a>&nbsp;&nbsp;
+<a href="{% url 'home' %}" class='btn btn-primary'>Home</a>
+</div>
+

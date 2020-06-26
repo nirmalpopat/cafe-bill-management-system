@@ -1,0 +1,42 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<div class="jumbotron">
+<h1>Item List</h1>
+<ul class="list-group list-group-flush">
+{% for i in Item %}
+<div class="row">
+    <div class="col-md-9">
+        <li class="list-group-item"><h5>Header:&nbsp;{{ i.itemheader }}&nbsp;Name:&nbsp;{{ i.item_name }}&nbsp;Price:&nbsp;{{ i.item_price }}&nbsp;</h5></li>
+    </div>
+    <div class="col-md-1">
+        <a href="" class="btn btn-primary">ADD</a>
+    </div>
+    <div class="col-md-1">
+        <a href="" class="btn btn-primary">Update</a>
+    </div>
+    <div class="col-md-1">
+        <a href="" class="btn btn-danger">Delete</a>
+    </div>
+</div>
+</ul>
+<br>
+{% endfor %}
+
+        
+  </ul>
+    
+<br>
+<ul class="list-group list-group-flush">
+    <li class="list-group-item">
+        hi
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                hi
+            </li>
+        </ul>
+    </li>
+</ul>
+<br>
+<a href="{% url 'add_itemheader' %}" class="btn btn-primary">Back To Add Item</a></div>&nbsp;&nbsp;
+<a href="{% url 'home' %}" class='btn btn-primary'>Home</a>

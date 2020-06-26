@@ -1,0 +1,62 @@
+{% load bootstrap3 %}
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .border{
+            border-color: black;
+            border-style:dotted;
+            border-width: 100px;
+        }
+        .div_size{
+            height: 75%;
+        }
+        .position{
+            display: flex;
+            flex-direction: row;
+            flex-flow: row;
+        }
+        .scroll{
+            overflow-x: scroll;
+            scroll-behavior: auto;
+        }
+        .v_scroll{
+            overflow-y: scroll;
+        }
+        .position{
+            display: flex;
+            flex-direction: row;
+            flex-flow: row;
+        }
+        .bill_total_div{
+            height: 40%;
+        }
+    </style>
+</head>
+
+
+<div class="row div_size">
+    <div class="col-md-8 border scroll">
+        <div class="row position">
+            {% for i in header %}
+            <div class="col-md-4 div_size">
+                <fieldset>
+                    <legend>{{ i.itemheader_name }}</legend>
+                        <table>
+                            {% for j in item %}
+                            {% if j.itemheader == i.itemheader_name %}
+                            <tr>
+                                <td>
+                                    &nbsp; &nbsp;<label for="cname">{{ j.item_name }}</label>
+                                </td>
+                                <td>
+                                    &nbsp; &nbsp;<input type="text" name="cname" id="cname" size="1%">
+                                </td>
+                            </tr>
+                            {% endif %}
+                        {% endfor %}
+                        </table>     
+                </fieldset>
+            </div>
+            {% endfor %}
+        </div>  

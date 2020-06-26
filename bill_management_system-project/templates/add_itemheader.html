@@ -1,0 +1,46 @@
+{% load bootstrap3 %}
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .item_list_header{
+            color: rgb(231, 231, 27);
+            background-color: black;
+        }
+    </style>
+</head>
+
+<div class="jumbotron item_list_header">
+    <h1>
+        {% if not form.instance.pk %}
+            ADD ITEM HEADER
+    </h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" class='btn btn-primary' value="Add Item">&nbsp;&nbsp;
+        <a href="{% url 'itemheader_list' %}" class='btn btn-primary'>Item Header List</a>&nbsp;&nbsp;
+        <a href="{% url 'item_list' %}" class='btn btn-primary'>Item List</a>&nbsp;&nbsp;
+        <a href="{% url 'home' %}" class='btn btn-primary'>Home</a>
+    </form>
+        {% else %}
+        <h1>
+            Update ITEM HEADER
+        </h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <input type="submit" class='btn btn-primary' value="Update Item">&nbsp;&nbsp;
+            <a href="{% url 'itemheader_list' %}" class='btn btn-primary'>Item Header List</a>&nbsp;&nbsp;
+            <a href="{% url 'item_list' %}" class='btn btn-primary'>Item List</a>&nbsp;&nbsp;
+            <a href="{% url 'home' %}" class='btn btn-primary'>Home</a>
+        </form>
+        {% endif %}
+    
+    
+</div>
+
+
+
+
+

@@ -1,0 +1,57 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .item_list_header{
+            color: rgb(231, 231, 27);
+            background-color: black;
+        }
+        .ul_list{
+            background-color: black;
+            
+        }
+    </style>
+</head>
+<h1 class="item_list_header">Item List</h1>
+<div class="jumbotron" style="background-color: black;">
+    
+    <ul class="list-group list-group-flush ul_list" type='none'>
+        {% for i in header %}
+            <li class="list-group-item"><h1>{{ i.itemheader_name }}&nbsp;<a href="{% url 'add_item' itemheader_name=i.itemheader_name %}" class="btn btn-primary">Add</a></h1>
+                <ul class="list-group list-group-flush" type='none'>
+                    {% for j in item %}
+                        
+                        {% if j.itemheader == i.itemheader_name %}
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <li class="list-group-item">
+                                        <h3>{{ j.item_name }}&nbsp;&nbsp;Rs.{{ j.item_price }}</h3>
+                                    </li>
+
+                                </div>
+                                <div class="col-md-1">
+                                    <a href="{% url 'update_item' pk=j.id %}" class="btn btn-primary">Update</a>
+                                </div>
+                                <div class="col-md-1">
+                                    <a href="{% url 'delete_item' pk=j.id %}" class="btn btn-danger">Delete</a>
+                                </div>
+                            </div>
+                                
+                                    
+                        {% endif %}
+                            
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+    
+<br>
+<a href="{% url 'itemheader_list' %}" class="btn btn-primary">Back To Item Header List</a>&nbsp;&nbsp;
+<a href="{% url 'home' %}" class='btn btn-primary'>Home</a>
+</div>
+
+
+
+
+    

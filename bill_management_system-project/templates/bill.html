@@ -1,0 +1,73 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<div class="col-md-12">
+    <fieldset>
+        <legend>Bill</legend>
+        <table>
+            <tr>
+                <td>
+                    Bill N0. : 
+                </td>
+                <td>
+                    {{ c_billno }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Customer Name : 
+                </td>
+                <td>
+                    {{ c_name }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Customer Mo. No. : 
+                </td>
+                <td>
+                    {{ c_mono }}
+                </td>
+            </tr>
+        </table>
+         
+        </label>
+        <table style="text-align: center;">
+            <tr>
+                <th>
+                    Item Name
+                </th>
+                <th>
+                    Item QTY
+                </th>
+                <th>
+                    Price Per Unit
+                </th>
+                <th>
+                    Total
+                </th>
+            </tr>
+            {% for i in bill_preview %}
+                <tr>
+                    <td>
+                        {{ i.item_name }}
+                    </td>
+                    <td>
+                        {{ i.item_qty }}
+                    </td>
+                    <td>
+                        {{ i.item_price }}
+                    </td>
+                    <td>
+                        {{ i.total }}
+                    </td>
+                </tr>
+            {% endfor %}
+            
+        </table>
+    </fieldset>
+    <br>
+    <h4>Total Bill : {{ total }}</h4>
+</div>
+</div>
+<br>
+&nbsp;&nbsp;&nbsp;<a href="{% url 'printbill' %}" class="btn btn-primary">Print</a>&nbsp;&nbsp;&nbsp;<a href="{% url 'home' %}" class="btn btn-primary">Home</a>

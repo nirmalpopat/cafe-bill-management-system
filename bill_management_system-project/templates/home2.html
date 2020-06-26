@@ -1,0 +1,113 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <style>
+        .border{
+            border-color: black;
+            border-style: groove;
+            border-width: 70%;
+        }
+        .menu_bill_height{
+            height: 79%;
+            max-height: 100%;
+        }
+        .scroll{
+            overflow-x: scroll;
+            scroll-behavior: auto;
+
+        }
+        .menu{
+            width: 70%;
+            max-width: 100%;
+            vertical-align: top;
+        }
+        .bill{
+            width: 30%;
+            vertical-align: top;
+        }
+        .item_width{
+            width: 70%;
+        }
+        .top_align{
+            vertical-align: top;
+            align-items:baseline;
+            text-align: right;
+            align-self: unset;
+            align-self: auto;
+        }
+        .cnt{
+            width:500px;
+            max-width:50%;
+            overflow:scroll;
+            height:600px;
+            max-height:600px;
+            display:flex;
+            flex-direction:row;
+        }
+        .cnt_td{
+            width:500px;
+            max-width:50%;
+            display:flex;
+            flex-direction: column; 
+        }
+        .table_size{
+            height: 79%;
+             
+        }
+        .item{
+            vertical-align: top;
+        }
+        .item_position{
+            display: flex;
+            flex-direction: row;
+            flex-flow: row;
+        }
+    </style>
+</head>
+
+<div class="col-md-12 col-sm-4 border">
+    <fieldset>
+        <legend>Customer Detail</legend>
+        <label for="cname">Customer Name</label>&nbsp;<input type="text" name="cname" id="cname" size="15%">&nbsp;
+        <label for="cno">Customer Phone Number</label>&nbsp;<input type="text" name="cno" id="cno" size="10%">&nbsp;
+        <label for="billno">Bill No</label>&nbsp;<input type="text" name="billno" id="billno" size="5%">
+    </fieldset>
+</div>
+
+<table class="table_size">
+    <tr>
+        <div class="item_position">
+            <td class="border item_width item scroll">
+                <fieldset>
+                    <legend>Customer Detail</legend>
+                    <label for="cname">Customer Name</label>&nbsp;<input type="text" name="cname" id="cname" size="15%">&nbsp;
+                    <label for="cno">Customer Phone Number</label>&nbsp;<input type="text" name="cno" id="cno" size="10%">&nbsp;
+                    <label for="billno">Bill No</label>&nbsp;<input type="text" name="billno" id="billno" size="5%">
+                </fieldset>
+            </td>
+            <td class="border item_width item scroll">
+                <fieldset>
+                    <legend>Customer Detail</legend>
+                    <label for="cname">Customer Name</label>&nbsp;<input type="text" name="cname" id="cname" size="15%">&nbsp;
+                    <label for="cno">Customer Phone Number</label>&nbsp;<input type="text" name="cno" id="cno" size="10%">&nbsp;
+                    <label for="billno">Bill No</label>&nbsp;<input type="text" name="billno" id="billno" size="5%">
+                </fieldset>
+            </td>
+        </div>
+        
+    </tr>
+</table>
+
+<div class="col-md-12 border">
+    <fieldset class="bill_menu">
+        <legend>Bill Menu</legend>
+        <label for="chay_price">Total Chay Price</label>&nbsp;<input type="text" name="chay_price" id="chay_price">&nbsp;
+        <label for="coffe_price">Total Coffee Price</label>&nbsp;<input type="text" name="coffe_price" id="coffe_price">&nbsp;
+        <label for="maggie_price">Total Maggie Price</label>&nbsp;<input type="text" name="maggie_price" id="maggie_price">
+    </fieldset>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+serevr

@@ -1,0 +1,35 @@
+
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<div class="jumbotron" style="background-color: black;" style="color: rgb(231, 231, 27);">
+<h1 style="color: rgb(231, 231, 27);">Item Headers</h1>
+    {% for i in itemheader_list %}
+        <div class="row" >
+            <div class="col-md-9">
+                <li class="list-group-item">{{ i.itemheader_name }}</li>
+            </div>
+            <div class="col-md-1">
+                <a href="{% url 'add_item' itemheader_name=i.itemheader_name %}" class="btn btn-primary">ADD</a>
+            </div>
+            <div class="col-md-1">
+                <a href="{% url 'update_itemheader' pk=i.id %}" class="btn btn-primary">Update</a>
+            </div>
+            <div class="col-md-1">
+                <a href="{% url 'delete_itemheader' pk=i.id %}" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+        <br>
+    {% endfor %}
+
+
+<br>
+
+<a href="{% url 'add_itemheader' %}" class="btn btn-primary">Go to Add Item Header</a>&nbsp;&nbsp;
+<a href="{% url 'item_list' %}" class="btn btn-primary">Item List</a>&nbsp;&nbsp;
+<a href="{% url 'home' %}" class='btn btn-primary'>Home</a>&nbsp;&nbsp;
+<a href="{% url 'customer_list' %}" class='btn btn-primary'>Customer List</a>
+</div>

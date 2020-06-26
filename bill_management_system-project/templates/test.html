@@ -1,0 +1,235 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .border{
+            border-color: black;
+            border-style:dotted;
+            border-width: 100px;
+        }
+        .div_size{
+            height: 75%;
+        }
+        .position{
+            display: flex;
+            flex-direction: row;
+            flex-flow: row;
+        }
+        .scroll{
+            overflow-x: scroll;
+            scroll-behavior: auto;
+        }
+        .v_scroll{
+            overflow-y: scroll;
+            scroll-behavior: auto;
+        }
+        .position{
+            display: flex;
+            flex-direction: row;
+            flex-flow: row;
+        }
+        .bill_total_div{
+            height: 40%;
+        }
+        .form_css{
+            background-color: black;
+            font-style: italic;
+            color: rgb(231, 231, 27);
+            scrollbar-color: rgb(231, 231, 27);
+        }
+        .form_css_billmenu{
+            background-color: black;
+            font-style: italic;
+            color: rgb(231, 231, 27);
+            size: 30%;
+            column-width: 30%;
+            width: 10%;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="{% url 'home' %}" method="POST" class="form_css">
+        {% csrf_token %}
+    <div class="row">
+        <div class="col-md-5">
+            <fieldset>
+                <legend>Customer Detail</legend>
+                &nbsp;&nbsp;<label for="cname">Name</label>&nbsp;<input required placeholder="Customer Name" type="text" name="cname" id="cname" size="15%">&nbsp;
+                &nbsp;&nbsp;<label for="cno">Mo. No.</label>&nbsp;<input required placeholder="Mobile No." type="text" name="cno" id="cno" size="10%">&nbsp;
+                &nbsp;&nbsp;<label for="billno">Bill No</label>&nbsp;<input type="text" placeholder="Bill No" value="{{ c_billno }}" name="bill_no" id="billno" size="5%">
+            </fieldset>
+        </div>
+        <div class="col-md-1">
+            <br>
+            <button onclick="find_bill()" class="btn btn-primary">Search</button>
+        </div>
+        <div class="col-md-4">
+            <fieldset>
+                <legend>Shop Name</legend>
+                &nbsp;&nbsp;Samta Cafe Shop&nbsp;&nbsp;Mo.No.: 8758818329 &nbsp;&nbsp;<a href="">More Info.</a>
+            </fieldset>
+        </div>
+        <div class="col-md-2">
+            <fieldset>
+                <legend ondblclick="fun()">Created By</legend>
+                &nbsp;&nbsp;Nirmal Popat &nbsp;&nbsp;<a href="">More Info.</a>
+        </div>
+    </div>
+    <div class="row div_size">
+        
+        <div class="col-md-9 border scroll">
+            <div class="row position">
+                {% for i in header %}
+            <div class="col-md-{{ val }} div_size">
+                <fieldset>
+                    <legend>{{ i.itemheader_name }}</legend>
+                        <table style="color: aliceblue;">
+                            {% for j in item %}
+                            {% if j.itemheader == i.itemheader_name %}
+                            <tr>
+                                <td>
+                                    &nbsp; &nbsp;<label for="cname">{{ j.item_name }}&nbsp;(Rs.{{ j.item_price }})</label>
+                                </td>
+                                <td>
+                                    &nbsp; &nbsp;<input type="text" name="{{ j.item_name }}" id="{{ j.item_name }}" size="1%" placeholder="QTY.">
+                                </td>
+                            </tr>
+                            
+                            {% endif %}
+                        {% endfor %}
+                        </table>     
+                </fieldset>
+            </div>
+            {% endfor %}
+            </div>  
+        </div>
+    
+        <div class="col-md-3 border v_scroll">
+            <fieldset>
+                <legend>Bill Priview</legend>
+                <table style="color: aliceblue;">
+                    <tr>
+                        <td>
+                            Bill N0. : 
+                        </td>
+                        <td>
+                            {{ c_billno }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Customer Name : 
+                        </td>
+                        <td>
+                            {{ c_name }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Customer Mo. No. : 
+                        </td>
+                        <td>
+                            {{ c_mono }}
+                        </td>
+                    </tr>
+                </table>
+                 
+                </label>
+                <table style="text-align: center;" style="color: aliceblue;">
+                    <tr style="color: aliceblue;">
+                        <th>
+                            Item Name
+                        </th>
+                        <th>
+                            Item QTY
+                        </th>
+                        <th>
+                            Price Per Unit
+                        </th>
+                        <th>
+                            Total
+                        </th>
+                    </tr>
+                    {% for i in bill_preview %}
+                        <tr style="color: aliceblue;"> 
+                            <td>
+                                {{ i.item_name }}
+                            </td>
+                            <td>
+                                {{ i.item_qty }}
+                            </td>
+                            <td>
+                                {{ i.item_price }}
+                            </td>
+                            <td>
+                                {{ i.total }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    
+                </table>
+            </fieldset>
+            <br>
+            <h4>Total Bill : {{ total }}</h4>
+        </div>
+    </div>
+    <div class="row bill_total_div">
+        <div class="col-md-8 border v_scroll bill_total_div">
+            <fieldset class="bill_menu">
+                <legend>Bill Menu</legend>
+                <table style="color: aliceblue;">
+                    <tr>
+                        {% for i in item_total %}
+                            <td class="form_css_billmenu">
+                                <label for="chay_price">Total {{ i.item_name }} Price</label>&nbsp;
+                            </td>
+                            <td class="form_css_billmenu">
+                                    <label for="">{{ i.item_total }}.00 Rs.</label>
+                            </td>
+                            {% if forloop.counter == 3 %}
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                </table>
+               
+                
+                
+            </fieldset>
+        </div>
+        <div class="col-md-4 border">
+            
+            <label for="total_bill">Total Bill</label>&nbsp;<input disabled type="text" placeholder="Total" value="{{ total }}" id="total_bill" name="total_bill" size="10%">&nbsp;
+            <input type="submit" value="Total Bill" name="total_bill" class="btn btn-primary">
+            
+            <br><br>
+            <input type="submit" value="Clear" name="clear" class="btn btn-danger" onclick="change_require()">&nbsp;<a href="{% url 'bill' %}" class="btn btn-primary">Generate Bill</a>&nbsp;&nbsp;
+            <a href="{% url 'edit_page' %}" class="btn btn-primary">Edit Page</a>
+        </div>
+    </div>
+</form>
+</body>
+
+<script>
+    function fun()
+    {
+        //alert('Hi')
+        window.location.href = "itemheaderlist"
+    }
+    function change_require()
+    {
+        document.getElementById("cname").required = false;
+        document.getElementById("cno").required = false;
+    }
+    function find_bill()
+    {
+        //alert(document.getElementById("billno").value);
+        //return  document.getElementById("billno").value;
+        //window.location.href = "itemheaderlist"
+        window.location.href = "searchbill/"+document.getElementById("billno").value;
+    }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

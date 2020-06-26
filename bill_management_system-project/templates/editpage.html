@@ -1,0 +1,35 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .form_css{
+            background-color: black;
+            font-style: italic;
+            color: rgb(231, 231, 27);
+            scrollbar-color: rgb(231, 231, 27);
+        }
+    </style>
+</head>
+
+
+<form action="" method="POST" class="jumbotron form_css">
+    {% csrf_token %}
+    <h1>Edit Home Page</h1>
+    <table>
+        <tr class="form_css">
+            <td>
+                Item Div Size : 
+            </td>
+            <td>
+                <input type="text" name="item_div_size" placeholder="Item Div Size">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" name="submit" value="Save" class="btn btn-primary">
+            </td>
+            <td>
+                <a href="{% url 'home' %}" class="btn btn-primary">Home</a>
+            </td>
+        </tr>
+    </table>
+</form>
